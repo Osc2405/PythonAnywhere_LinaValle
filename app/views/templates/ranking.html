@@ -2,6 +2,23 @@
 
 {% block content %}
 
-<h1>Hola mundo</h1>
+<h1>{{titulo}}</h1>
+<h1>{{columnas}}</h1>
+<h1>{{filas}}</h1>
+<table>
+    <tr>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+    </tr>
+{% for element in contenido %}
+<tr>
+    {% for item in element %}
+    <td>{{item}}</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+</table>
 
 {% endblock %}

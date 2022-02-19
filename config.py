@@ -14,3 +14,5 @@ class Config:
 
     TEMPLATE_FOLDER = "views/templates/"
     STATIC_FOLDER = "views/static/"
+
+    DRIVERS_PATH = "app/drivers/chromedriver.exe"
