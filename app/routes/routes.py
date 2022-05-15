@@ -1,14 +1,18 @@
 from gettext import find
-from webbrowser import Chrome
-from flask import Blueprint, render_template
-from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
+from flask import Blueprint, render_template,request
 import time
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+import json,urllib.request
+import os
+from operator import itemgetter
+from datetime import datetime
+import csv
 
-##driver = webdriver.Chrome(ChromeDriverManager().install())
-driver = webdriver.Chrome(executable_path='C:/Users/orose/Desktop/Diana_Proyecto/Intento1/app/routes/drivers/chromedriver.exe')
+import pandas as pd
+
+
+
+
+
 
 
 
@@ -28,32 +32,75 @@ def home():
 @global_scope.route("/ranking", methods=['GET'])
 def ranking():
     "Page for the ranking"
-    driver.get("https://www.colombiaacuatica.com/backtun/torneos/fecna/sw/rankingfecna01.php")
-    titulo=driver.title
-    rows=len(driver.find_elements_by_class_name("row"))
-    time.sleep(5)
-    columns=len(driver.find_elements_by_xpath("(//div[contains(@class, 'row')])"))
-    time.sleep(5)
-    fila=[]
-    for i in range (2,columns-2):
-        for j in range (1,5):
-            dato= driver.find_element_by_xpath("/html/body/div["+str(i)+"]/div["+str(j)+"]").text
-            fila.append(dato)
-    contenido=fila
-    size=len(contenido)
-    driver.quit()
-
-    chunked_list = list()
-    chunk_size = 4
-    for i in range(0, len(contenido), chunk_size):
-        chunked_list.append(contenido[i:i+chunk_size])
-    print(chunked_list)
-    parameters = {"title": "Ranking",
+    titulo="Ranking 50M"
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    json_url = os.path.join(SITE_ROOT, 'data', 'data.json')
+    data = json.load(open(json_url))
+    data["columnas"]=data["data"][0][:]
+    data["data"]=data["data"][1:]
+    competencias=[]
+    for datos in data["data"]:
+        for fmt in ('%M:%S:%f', '%M:%S'):
+            try:
+                if type(datos[3]==datetime.time):
+                    datos[3]=datos[3]
+                else:
+                    datos[3]=datetime.strptime(datos[3], fmt).time()
+            except ValueError:
+                pass    
+        competencias.append(datos[8])
+    
+    data["data"] = sorted(data["data"], key=itemgetter(8))
+    competencias=list(dict.fromkeys(competencias))
+    print(competencias)    
+    
+    
+    parameters = {"title": "Ranking 50M",
                 "description": "Here is the ranking",
                 "titulo":titulo,
-                "columnas":columns,
-                "filas":rows,
-                "contenido":chunked_list,
-                "size":size
+                "data":data,
+                "competencias":competencias
                 }
     return render_template("ranking.html", **parameters)
+
+@global_scope.route("/ranking25", methods=['GET'])
+def ranking25():
+    "Page for the ranking of 25M"
+    titulo="Ranking 25M"
+    SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    csv_url = os.path.join(SITE_ROOT, 'data', 'Ranking50M.csv')
+    with open(csv_url) as f:
+        reader = csv.reader(f)
+        data = list(reader)
+    xlsx_file = os.path.join(SITE_ROOT, 'data', 'Ranking25M.xlsx')
+    df=pd.read_excel(xlsx_file)
+    df = df[["Event","Rk","Team","Date","Time","FinaPoints","Birth","Name","Gender"]]
+    df['Date']= pd.to_datetime(df['Date']).dt.date
+    df['Birth']= pd.to_datetime(df['Birth']).dt.date
+    myList=df.values.tolist()
+    print(myList)
+    columnas=list(df.columns.values)
+    
+    parameters = {"title": "Ranking 25M",
+                "description": "Here is the ranking",
+                "titulo":titulo,
+                "data":myList,
+                "columnas":columnas
+                }
+
+    return render_template("ranking25.html", **parameters)
+
+@global_scope.route("/ranking4",methods=["GET"])
+def ranking4():
+    url="http://localhost:7001/api/ranking"
+    response=urllib.request.urlopen(url)
+    data=response.read()
+    dict=json.loads(data)
+    print(type(dict["data"]))
+    print(dict["data"])
+    return render_template("ranking4.html",datos2=dict["data"])
+
+@global_scope.route("/rankingGeneral",methods=["GET","POST"])
+def rankingGeneral():
+    if request.method=="GET":
+        return render_template("rankingGeneral.html")

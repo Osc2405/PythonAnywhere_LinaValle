@@ -5,23 +5,22 @@
 <h1>{{titulo}}</h1>
 
 <div class="autocomplete" style="width:300px;">
-    <label for="competencia">Para ver mas opciones escriba la prueba que desea</label>
-    <input id="myInput" type="text" name="competencia" placeholder="Competencia" onkeyup="myFunction()" value="100M Libre">
+    <input id="myInput" type="text" name="myCountry" placeholder="Competencia" onkeyup="myFunction()">
 </div>
 </div>
 <div class="mx-5 px-5">
 <table class="table table-striped" id="myTable">
     <thead>
     <tr class="">
-        {%for item in data.columnas %}
+        {%for item in columnas %}
         <th scope="col">{{item}}</th>
         {% endfor %}
     </tr>
 </thead>
-{% for element in data.data %}
+{% for element in data %}
 <tr  scope="row">
     {% for item in element %}
-    <td class="">{{item}}</td>
+    <td>{{item}}</td>
     {% endfor %}
 </tr>
 {% endfor %}
