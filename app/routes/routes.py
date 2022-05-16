@@ -23,7 +23,7 @@ global_scope = Blueprint("views", __name__)
 def home():
     """Landing page route."""
 
-    parameters = {"title": "Diana's Project",
+    parameters = {"title": "LinaValle",
                   "description": "This is a simple page for diana"
                   }
 

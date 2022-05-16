@@ -14,3 +14,4 @@ app.register_blueprint(errors_scope, url_prefix="/")
 app.register_blueprint(api_scope, url_prefix="/api")
 
 reset_table()
+

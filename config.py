@@ -16,3 +16,4 @@ class Config:
     STATIC_FOLDER = "views/static/"
 
     DRIVERS_PATH = "app/drivers/chromedriver.exe"
+
