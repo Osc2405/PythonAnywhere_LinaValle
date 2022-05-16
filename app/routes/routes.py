@@ -11,7 +11,7 @@ import pandas as pd
 
 
 
-
+"""Genero, edad, prueba, puesto"""
 
 
 

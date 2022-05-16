@@ -1133,15 +1133,15 @@ Home Slider
 }
 
 .slider-bg1 {
-  background-image: url(../img/home-1/slider1.jpg);
+  background-image: url(../img/home-1/2.svg);
 }
 
 .slider-bg2 {
-  background-image: url(../img/home-1/slider2.jpg);
+  background-image: url(../img/home-1/3.svg);
 }
 
 .slider-bg3 {
-  background-image: url(../img/home-1/slider3.jpg);
+  background-image: url(../img/home-1/1.svg);
 }
 
 /*=================================
@@ -1185,7 +1185,7 @@ About Section
 .about-right {
   margin-bottom: 30px;
   position: relative;
-  background-image: url(../img/about/1.jpg);
+  background-image: url(../img/about/1_2.png);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -1418,7 +1418,7 @@ Services Area End
 Apply Area 
 ====================================*/
 .apply-area {
-  background-image: url(../img/apply-bg.jpg);
+  background-image: url(../img/apply_1.png);
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

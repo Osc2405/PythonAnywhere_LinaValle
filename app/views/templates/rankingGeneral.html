@@ -1,6 +1,160 @@
-{% extends 'layout.html' %}
+{% extends 'layout.html' %} {% block content %}
+<div class="row justify-content-center">
+  <div class="text-center">
+    <h1 class="">RANKING LINAVALLE</h1>
+  </div>
+</div>
+<div class="mx-5 px-5">
+  <form action="index" method="post">
+    <div class="row justify-content-center">
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="categoria">Inicio:</label>
+          <div
+            class="input-group date"
+            id="datetimepicker7"
+            data-target-input="nearest"
+          >
+            <input
+              type="text"
+              name="inicio"
+              class="form-control datetimepicker-input"
+              data-target="#datetimepicker7"
+              data-provide="datepicker"
+              id='datepicker'
+              spellcheck="false"
+              data-ms-editor="true"
+            />
+            <div
+              class="input-group-append"
+              data-target="#datetimepicker7"
+              data-toggle="datetimepicker"
+            >
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="categoria">Fin:</label>
+          <div
+            class="input-group date"
+            id="datetimepicker8"
+            data-target-input="nearest"
+          >
+            <input
+              type="text"
+              name="fin"
+              class="form-control datetimepicker-input"
+              data-target="#datetimepicker8"
+              data-provide="datepicker"
+              spellcheck="false"
+              data-ms-editor="true"
+            />
+            <div
+              class="input-group-append"
+              data-target="#datetimepicker8"
+              data-toggle="datetimepicker"
+            >
+              <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div class="row justify-content-center mt-3 text-center">
+        <div class="form-group col-sm-3">
+            <label class="text-center">Genero:</label>
+            <div class="input-group mx-auto" style="padding-left: 25%;">
+              <div class="icheck-primary d-inline col-sm-4">
+                <input
+                  type="radio"
+                  id="radioPrimary1"
+                  name="genero"
+                  value="F"
+                  checked=""
+                />
+                <label for="radioPrimary1">Fem</label>
+              </div>
+              <div class="icheck-success d-inline col-sm-4">
+                <input type="radio" id="radioSuccess2" name="genero" value="M" />
+                <label for="radioSuccess2">Masc</label>
+              </div>
+            </div>
+          </div>
+        <div class="form-group col-sm-3">
+            <label for="prueba">Prueba:</label>
+            <select id="prueba" name="prueba" class="form-control" required="">
+              <option value="2" selected="selected">50M Libre/50M Free</option>
+              <option value="3">100M Libre/100M Free</option>
+              <option value="4">200M Libre/200M Free</option>
+              <option value="5">400M Libre/400M Free</option>
+              <option value="6">800M Libre/800M Free</option>
+              <option value="7">1500M Libre/1500M Free</option>
+              <option value="9">50M Espalda/50M Back</option>
+              <option value="10">100M Espalda/100M Back</option>
+              <option value="11">200M Espalda/200M Back</option>
+              <option value="13">50M Pecho/50M Breast</option>
+              <option value="14">100M Pecho/100M Breast</option>
+              <option value="15">200M Pecho/200M Breast</option>
+              <option value="17">50M Mariposa/50M Fly</option>
+              <option value="18">100M Mariposa/100M Fly</option>
+              <option value="19">200M Mariposa/200M Fly</option>
+              <option value="21">200M Comb.ind/200M Medley</option>
+              <option value="22">400M Comb.ind/400M Medley</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="piscina">Piscina:</label>
+            <select id="piscina" name="piscina" class="form-control">
+              <option selected="" value="LC">LARGA - 50 m - LC</option>
+              <option value="SC">CORTA - 25 m - SC</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-3">
+            <label for="categoria">Categoria:</label>
+            <select
+              id="categoria"
+              name="categoria"
+              class="form-control"
+              required=""
+            >
+              <option selected="" value="10">10 AÑOS DAMAS</option>
+              <option value="11">11 AÑOS DAMAS O VARONES</option>
+              <option value="12">12 AÑOS DAMAS O VARONES</option>
+              <option value="13">13 AÑOS DAMAS O VARONES</option>
+              <option value="14">14 AÑOS DAMAS O VARONES</option>
+              <option value="15">15 AÑOS DAMAS O VARONES</option>
+              <option value="16">16 AÑOS VARONES</option>
+              <option value="16 - 17">16 - 17 AÑOS DAMAS</option>
+              <option value="17 - 18">17 - 18 AÑOS VARONES</option>
+              <option value="18 - 24">18 - 24 AÑOS DAMAS</option>
+              <option value="19 - 24">19 - 24 AÑOS VARONES</option>
+              <option value="25 - 29">25 - 29 AÑOS</option>
+              <option value="30 - 34">30 - 34 AÑOS</option>
+              <option value="35 - 39">35 - 39 AÑOS</option>
+              <option value="40 - 44">40 - 44 AÑOS</option>
+              <option value="45 - 49">45 - 49 AÑOS</option>
+              <option value="50 - 54">50 - 54 AÑOS</option>
+              <option value="55 - 59">55 - 59 AÑOS</option>
+              <option value="60 - 64">60 - 64 AÑOS</option>
+              <option value="65 - 69">65 - 69 AÑOS</option>
+              <option value="70 - 74">70 - 74 AÑOS</option>
+              <option value="75 - 79">75 - 79 AÑOS</option>
+              <option value="80 +">80 - MÁS AÑOS</option>
+              <option value="MAS">10 - 109 AÑOS MASCULINO</option>
+            </select>
+          </div>
 
-{% block content %}
-<h1>Hola mundo</h1>
+      </div>
+      
+
+    <div class="card-footer d-flex justify-content-center align-items-center">
+      <button type="submit" class="btn btn-primary">CONSULTAR</button>
+    </div>
+  </form>
+</div>
 
 {% endblock %}
