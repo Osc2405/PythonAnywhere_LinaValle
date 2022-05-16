@@ -5,7 +5,7 @@ load_dotenv()  # Carga todo el contenido de .env en variables de entorno
 
 
 class Config:
-    SERVER_NAME = "https://ligavallecaucanadenatacion.herokuapp.com/"
+    ##SERVER_NAME = "localhost:4001"
     DEBUG = True
 
     DATABASE_PATH = "app/database/contact_book.db"
