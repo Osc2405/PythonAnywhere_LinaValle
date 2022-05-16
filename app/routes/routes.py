@@ -47,14 +47,14 @@ def ranking():
                 else:
                     datos[3]=datetime.strptime(datos[3], fmt).time()
             except ValueError:
-                pass    
+                pass
         competencias.append(datos[8])
-    
+
     data["data"] = sorted(data["data"], key=itemgetter(8))
     competencias=list(dict.fromkeys(competencias))
-    print(competencias)    
-    
-    
+    print(competencias)
+
+
     parameters = {"title": "Ranking 50M",
                 "description": "Here is the ranking",
                 "titulo":titulo,
@@ -68,19 +68,15 @@ def ranking25():
     "Page for the ranking of 25M"
     titulo="Ranking 25M"
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    csv_url = os.path.join(SITE_ROOT, 'data', 'Ranking50M.csv')
-    with open(csv_url) as f:
-        reader = csv.reader(f)
-        data = list(reader)
     xlsx_file = os.path.join(SITE_ROOT, 'data', 'Ranking25M.xlsx')
     df=pd.read_excel(xlsx_file)
-    df = df[["Event","Rk","Team","Date","Time","FinaPoints","Birth","Name","Gender"]]
+    df = df[["Rk","Team","Date","Time","FinaPoints","Birth","Name","Gender","Event"]]
     df['Date']= pd.to_datetime(df['Date']).dt.date
     df['Birth']= pd.to_datetime(df['Birth']).dt.date
     myList=df.values.tolist()
     print(myList)
     columnas=list(df.columns.values)
-    
+
     parameters = {"title": "Ranking 25M",
                 "description": "Here is the ranking",
                 "titulo":titulo,

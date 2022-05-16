@@ -2,4 +2,7 @@ pandas
 Flask
 Flask-Compress
 Flask-SQLAlchemy
-dotenv
+python-dotenv
+Faker
+cryptography
+openpyxl
